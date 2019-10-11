@@ -10,8 +10,9 @@ class Sibelia < Formula
   
   def install
     # Reduce memory usage for CircleCI. 
-    ENV["MAKEFLAGS"] = "-j16" if ENV["CIRCLECI"]
+    ENV["MAKEFLAGS"] = "-j8" if ENV["CIRCLECI"]
     
+    # 'build' folder already exists
     mkdir "build" do
       system "cmake", "../src", *std_cmake_args
       system "make"
